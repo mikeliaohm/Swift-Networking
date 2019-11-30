@@ -63,6 +63,7 @@ extension APIClient {
             }
             
             do {
+                print(T.Response.self)
                 let responseData = try JSONDecoder().decode(T.Response.self, from: data)
                 completion(.success(responseData))
             } catch {
