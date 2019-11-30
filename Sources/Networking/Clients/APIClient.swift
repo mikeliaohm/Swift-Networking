@@ -16,7 +16,7 @@ public final class APIClient {
     private let baseURL: URL
     private let session = URLSession(configuration: .default)
     
-    init(domain: String) {
+    public init(domain: String) {
         self.domain = domain
         self.baseURL = URL(string: domain)!
     }
