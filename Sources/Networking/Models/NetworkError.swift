@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+public enum NetworkError: Error {
     case noData
     case cannotReachServer
     case responseError(code: Int, message: String)

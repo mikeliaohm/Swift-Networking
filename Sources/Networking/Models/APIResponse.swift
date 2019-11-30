@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct APIResponse<Response: Decodable>: Decodable {
+public struct APIResponse<Response: Decodable>: Decodable {
     let results: Response?
 }

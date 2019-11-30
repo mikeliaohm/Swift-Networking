@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias ResultCallback<Value> = (Result<Value, NetworkError>) -> Void
+public typealias ResultCallback<Value> = (Result<Value, NetworkError>) -> Void
 
-final class APIClient {
+public final class APIClient {
     
     let domain: String
     private let baseURL: URL
