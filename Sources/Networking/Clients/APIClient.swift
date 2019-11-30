@@ -10,15 +10,7 @@ import Foundation
 
 typealias ResultCallback<Value> = (Result<Value, NetworkError>) -> Void
 
-protocol APIClientProtocol {
-    func post<T: APIRequest>(
-        apiRequest: T,
-        body: T.Body,
-        completion: @escaping ResultCallback<APIResponse<T.Response>>
-    )
-}
-
-final class APIClient: APIClientProtocol {
+final class APIClient {
     
     let domain: String
     private let baseURL: URL
@@ -33,7 +25,7 @@ final class APIClient: APIClientProtocol {
 
 extension APIClient {
     
-    public func get<T: APIRequest>(apiRequest: T, completion: @escaping ResultCallback<T.Response>) {
+    public func get<T: GetAPIRequest>(apiRequest: T, completion: @escaping ResultCallback<T.Response>) {
         
         guard let fullURL = URL(string: apiRequest.resourceName, relativeTo: baseURL) else {
             completion(.failure(.urlError))
@@ -85,7 +77,7 @@ extension APIClient {
 // MARK: implement post method
 extension APIClient {
     
-    public func post<T: APIRequest>(apiRequest: T, body: T.Body, completion: @escaping ResultCallback<T.Response>) {
+    public func post<T: PostAPIRequest>(apiRequest: T, body: T.Body, completion: @escaping ResultCallback<T.Response>) {
         
         guard let fullURL = URL(string: apiRequest.resourceName, relativeTo: baseURL) else {
             completion(.failure(.urlError))

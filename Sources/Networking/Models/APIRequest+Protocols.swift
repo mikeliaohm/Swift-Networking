@@ -8,14 +8,17 @@
 
 import Foundation
 
-protocol APIRequest: Encodable {
+protocol GetAPIRequest: Encodable {
+    
+    associatedtype Response: Decodable
+    var resourceName: String { get set }
+    
+}
+
+protocol PostAPIRequest: Encodable {
     
     associatedtype Response: Decodable
     associatedtype Body: Encodable
-    
     var resourceName: String { get set }
-}
 
-protocol Body: Encodable {
-    
 }
