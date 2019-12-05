@@ -54,12 +54,14 @@ class APIClientTests: XCTestCase {
         let apiClient = APIClient(domain: "https://www.amiiboapi.com/api/amiibo/")
         let newExpectation = expectation(description: "apiexpectation")
         
-        waitForExpectations(timeout: 5.0) { error in
-            apiClient.get(apiRequest: AmiiboAPIRequest()) {
-                result in
-                
-                XCTAssertNil(result)
-            }
+        apiClient.get(apiRequest: AmiiboAPIRequest()) {
+            result in
+            
+            XCTAssertNil(result)
+            newExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 3.0) { error in
             
             XCTAssertNil(error)
         }
